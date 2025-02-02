@@ -1,10 +1,10 @@
+import java.io.*;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class CaesarApp {
     public static void main(String[] args) {
-        String str = "пываа";
-        char[] chars = str.toCharArray();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите секретный ключ, от 1 до 300:");
         int keyCaesar = scanner.nextInt();
@@ -12,41 +12,47 @@ public class CaesarApp {
             System.out.println("Ошибка ввода.");
             System.out.print("Введите секретный ключ, от 1 до 300:");
             keyCaesar = scanner.nextInt();
-        };
+        }
+        ;
+
         List<Character> listAlphabet = Alphabet.getAlpabet();
         System.out.println(listAlphabet);
 
-        listAlphabet.size();
+        keyCaesar = CeasarLib.getKeyCaesar(keyCaesar, listAlphabet.size());
+
 
         for (int i = 0; i < listAlphabet.size(); i++) {
             System.out.print(listAlphabet.get(i) + "   ");
         }
-        System.out.println();
 
-        String cryptString=Сrypt(listAlphabet,str,keyCaesar) ;
-        System.out.println("Было    :" + str);
-        System.out.println("Стало   :" + cryptString);
+        String filePath = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textIn.txt";
+        String fileOutPath = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textOutCrypt.txt";
+        String fileOutPathDeCrypt = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textOutDeCrypt.txt";
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filePath));
+             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(fileOutPath));
+             BufferedOutputStream bosDeCrypt = new BufferedOutputStream(new FileOutputStream(fileOutPathDeCrypt));
+        ) {
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            int bytesRead;
 
-        String newDecryptString = Сrypt(listAlphabet,cryptString,-keyCaesar);
-        System.out.println();
-        System.out.println();
-        System.out.println("Было    :" + cryptString);
-        System.out.println("Стало   :" + newDecryptString);
-
-    }
-
-    public static String Сrypt(List<Character> listAlphabet,String str,int keyCaesar) {
-        char[] newChar = new char[str.length()];
-        int i =0;
-        for(char ch:str.toCharArray()){
-            newChar[i]=listAlphabet.get(listAlphabet.indexOf(ch) + keyCaesar);
-            i++;
+            while ((bytesRead = bis.read(buffer, 0, buffer.length)) != -1) {
+                String stt = new String(buffer, 0, bytesRead).toLowerCase(Locale.ROOT);
+                String cryptString2 = CeasarLib.Сrypt(listAlphabet, stt, keyCaesar);
+                String cryptString3 = CeasarLib.DeСrypt(listAlphabet, cryptString2, keyCaesar);
+                bos.write(cryptString2.getBytes());
+                bos.flush();
+                bosDeCrypt.write(cryptString3.getBytes());
+                bosDeCrypt.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return new String(newChar);
+
     }
+
 
     private static boolean controlKeyCaesar(int keyCaesar) {
-
         if (keyCaesar > 0 && keyCaesar <= 300) {
             return true;
         } else {
