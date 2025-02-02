@@ -27,15 +27,12 @@ public class CeasarLib {
         int i = 0;
         for (char ch : str.toCharArray()) {
             int seek = keyCaesar;
-            System.out.println("listAlphabet.indexOf(ch):" + listAlphabet.indexOf(ch));
-            System.out.println("keyCaesar:" + keyCaesar);
             if ((listAlphabet.indexOf(ch) - keyCaesar) == 0) {
                 seek = 0;
             } else if (listAlphabet.indexOf(ch) == 0) {
                 seek = listAlphabet.size() + listAlphabet.indexOf(ch) - keyCaesar ;
             } else if ((listAlphabet.indexOf(ch) - keyCaesar) < 0) {
                 seek = listAlphabet.size() + listAlphabet.indexOf(ch) - keyCaesar + 1;
-                System.out.println("ДОлжен быть тут  :" + seek);
             } else {
                 if ((listAlphabet.indexOf(ch) - keyCaesar) > 0) {
                     seek = listAlphabet.indexOf(ch) - keyCaesar;
@@ -66,9 +63,6 @@ public class CeasarLib {
                 System.out.println("В тексте присутствуют иные символы от алфавита");
                 break;
             }
-            System.out.println("listAlphabet.indexOf(ch):" + listAlphabet.indexOf(ch));
-            System.out.println("keyCaesar:" + keyCaesar);
-            System.out.println("listAlphabet.size():" + listAlphabet.size());
             if ((listAlphabet.indexOf(ch) + keyCaesar) == listAlphabet.size()) {
                 seek =0 ;
             } else if ((listAlphabet.indexOf(ch) + keyCaesar) > listAlphabet.size()) {
