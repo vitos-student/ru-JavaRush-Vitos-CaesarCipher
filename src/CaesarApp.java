@@ -24,7 +24,7 @@ public class CaesarApp {
     private final static String FILEINPATH = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textIn.txt";
     private final static String FILE_OUT_PATH = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textOutCrypt.txt";
     private final static String FILE_OUT_PATH_DE_CRYPT = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\textOutDeCrypt.txt";
-    private final static String FILE_OUT_BF = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\out\\production\\ru JavaRush Vitos CaesarCipher\\BrudFors\\textBF.txt";
+    private final static String FILE_OUT_BF = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\BrudFors\\textBF.txt";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
