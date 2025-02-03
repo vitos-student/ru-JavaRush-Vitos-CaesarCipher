@@ -30,7 +30,7 @@ public class CeasarLib {
             if ((listAlphabet.indexOf(ch) - keyCaesar) == 0) {
                 seek = 0;
             } else if (listAlphabet.indexOf(ch) == 0) {
-                seek = listAlphabet.size() + listAlphabet.indexOf(ch) - keyCaesar ;
+                seek = listAlphabet.size() + listAlphabet.indexOf(ch) - keyCaesar;
             } else if ((listAlphabet.indexOf(ch) - keyCaesar) < 0) {
                 seek = listAlphabet.size() + listAlphabet.indexOf(ch) - keyCaesar + 1;
             } else {
@@ -40,8 +40,12 @@ public class CeasarLib {
                     seek = listAlphabet.size() - keyCaesar - 1;
                 }
             }
-
-            System.out.println(seek + "   " + (new String(newChar)));
+            if (seek >= listAlphabet.size()) {
+                seek -= listAlphabet.size();
+            }
+            // System.out.println("listAlphabet.indexOf(ch)  :"+listAlphabet.indexOf(ch));
+            // System.out.println("keyCaesar                 :"+keyCaesar);
+            //  System.out.println(seek + "   " + (new String(newChar)));
             newChar[i] = listAlphabet.get(seek);
             i++;
         }
@@ -64,7 +68,7 @@ public class CeasarLib {
                 break;
             }
             if ((listAlphabet.indexOf(ch) + keyCaesar) == listAlphabet.size()) {
-                seek =0 ;
+                seek = 0;
             } else if ((listAlphabet.indexOf(ch) + keyCaesar) > listAlphabet.size()) {
                 seek = listAlphabet.indexOf(ch) + keyCaesar - listAlphabet.size() - 1;
             } else {
