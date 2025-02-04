@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static java.rmi.server.RemoteServer.setLog;
+
 public class CaesarApp {
     /**
      * Предпологается, что файлы созданы. Не делал контроль на отсутвие и пустоту
@@ -15,8 +17,6 @@ public class CaesarApp {
      * FILE_OUT_BF - взлом. все пишу в один файлик, с разделитем Шаг №
      *
      * Внимание 1. пути к файлам надо указать свои
-     * Внимание 2. вывожу на экран информацию о валидации. Например наличие символов вне алфавита.
-     * для себя не хочется засорять экран, правильнее скидывать в лог
      * Декодирование не падает, при наличии символов вне алгоритма.
      * Сделал остановку на этом символе. В файлы информаця запишется от 1 символа до не существующего в алгоритме.
      *
@@ -27,6 +27,7 @@ public class CaesarApp {
     private final static String FILE_OUT_BF = "C:\\Users\\фвьшт\\IdeaProjects\\ru JavaRush Vitos CaesarCipher\\src\\BrudFors\\textBF.txt";
 
     public static void main(String[] args) {
+        Log_Lib.setLogCaesarApp("test","test");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Программа шифрования и дешифрования кодом Цезаря");
         System.out.println("Для выхода введите exit, для продолжения любую клавишу");
@@ -167,6 +168,7 @@ public class CaesarApp {
         }
 
     }
+
 
     private static boolean controlKeyCaesar(int keyCaesar) {
         if (keyCaesar > 0 && keyCaesar <= 300) {

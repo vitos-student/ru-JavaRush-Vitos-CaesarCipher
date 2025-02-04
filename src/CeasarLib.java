@@ -20,7 +20,8 @@ public class CeasarLib {
 
     public static String DeСrypt(List<Character> listAlphabet, String str, int keyCaesar) {
         if (AlphabetEmpty(listAlphabet)) {
-            System.out.println("Не задан алфавит");
+            Log_Lib.setLogCaesarApp("DeСrypt","Не задан алфавит");
+           // System.out.println("Не задан алфавит");
             return null;
         }
         char[] newChar = new char[str.length()];
@@ -55,7 +56,8 @@ public class CeasarLib {
 
     public static String Сrypt(List<Character> listAlphabet, String str, int keyCaesar) {
         if (AlphabetEmpty(listAlphabet)) {
-            System.out.println("Не задан алфавит");
+            Log_Lib.setLogCaesarApp("Сrypt","Не задан алфавит");
+          //  System.out.println("Не задан алфавит");
             return null;
         }
         char[] newChar = new char[str.length()];
@@ -64,7 +66,7 @@ public class CeasarLib {
             int seek = keyCaesar;
 
             if (!listAlphabet.contains(ch)) {
-                System.out.println("В тексте присутствуют иные символы от алфавита");
+                Log_Lib.setLogCaesarApp("Сrypt","В тексте присутствуют иные символы от алфавита");
                 break;
             }
             if ((listAlphabet.indexOf(ch) + keyCaesar) == listAlphabet.size()) {
